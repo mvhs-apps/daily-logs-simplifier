@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom"],
+    "target": "es2015",
+    "module": "commonjs",
+    "strict": true
+  },
+  "include": ["src/**/*.js"],
+  "exclude": ["node_modules"]
+}

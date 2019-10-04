@@ -1,0 +1,62 @@
+html,
+body {
+  font-family: Roboto !important;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  .theme {
+    &-dark {
+      background-color: #282c34 !important;
+      color: #e9e9e9 !important;
+    }
+
+    &-light {
+      background-color: #ffffff !important;
+      color: #282c34 !important;
+    }
+  }
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+code,
+.textarea {
+  font-family: "Fira Code" !important;
+}
+
+ul,
+ol {
+  padding-left: 20px;
+}
+
+#directions {
+  font-size: 1.2rem;
+
+  ul,
+  ol,
+  p {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+#questions {
+  font-size: 1.2rem;
+
+  ul,
+  ol {
+    margin: 0;
+  }
+}
+
+.textarea {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.navbar {
+  border-radius: 0.5rem;
+}
