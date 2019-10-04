@@ -31,7 +31,6 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "dompurify": "^2.0.3",
-    "marked": "^0.7.0",
-    "monaco-editor": "^0.18.1"
+    "marked": "^0.7.0"
   }
 }
