@@ -6,7 +6,7 @@ elements.forEach(el =>
   el.addEventListener(
     "keydown",
     function(e) {
-      if (e.keyCode === 9) {
+      if (e.key === "Tab") {
         // tab was pressed
         // get caret position/selection
         var start = this.selectionStart;
