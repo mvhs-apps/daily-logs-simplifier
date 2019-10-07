@@ -17,36 +17,11 @@
       <nav class="navbar mb-4">
         <span class="navbar-brand mb-0">Daily Log Creator</span>
       </nav>
-      <div class="d-flex flex-column container grow">
-        <div class="row mb-4 grow">
-          <div class="col-sm">
-            <h3>Directions</h3>
-            <p id="directions"></p>
-          </div>
-          <div class="col-sm">
-            <textarea
-              class="form-control textarea"
-              id="directionsAnswers"
-              rows="10"
-            ></textarea>
-          </div>
-        </div>
-        <div class="row mb-4 grow">
-          <div class="col">
-            <h3>Questions</h3>
-            <p id="questions"></p>
-          </div>
-          <div class="col-sm">
-            <textarea
-              class="form-control textarea"
-              id="questionsAnswers"
-              rows="10"
-            ></textarea>
-          </div>
-        </div>
+      <div class="d-flex flex-column container">
+        <div id="parent"></div>
         <div class="row mb-4">
           <div class="col">
-            <button class="btn btn-primary w-100 h-100 p-2">
+            <button class="btn btn-primary w-100 h-100 p-2" onclick="create()">
               <h3 class="mb-0">Create!</h3>
             </button>
           </div>

@@ -3,7 +3,7 @@ ol {
   padding-left: 20px;
 }
 
-#directions {
+#parent {
   font-size: 1.2rem;
 
   ul,
@@ -11,14 +11,5 @@ ol {
   p {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
-  }
-}
-
-#questions {
-  font-size: 1.2rem;
-
-  ul,
-  ol {
-    margin: 0;
   }
 }
