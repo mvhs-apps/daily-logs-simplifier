@@ -4,16 +4,15 @@ import "~/styles";
 import { sanitize } from "dompurify";
 import marked from "marked";
 import enableTabs from "~/tab";
+import axios from "axios";
 
-const sheetId = "1k9WZcsauAp6LI7T_eIzQ_tr2WgWo86pYUMTtkl0CH3c"; // this is the id of the spreadsheet
+const sheetId = "1k9WZcsauAp6LI7T_eIzQ_tr2WgWo86pYUMTtkl0CH3c";
 const url = `https://spreadsheets.google.com/feeds/list/${sheetId}/od6/public/values?alt=json`;
 
-const parent = document.querySelector("#parent"); // get element with id "parent"
+const parent = document.querySelector("#parent");
 
-// either "dark" or "light"
 const theme = "dark";
 
-// set theme
 document.body.classList.add(`theme-${theme}`);
 
 const navbar = document.querySelector(".navbar");
@@ -22,34 +21,42 @@ if (navbar) {
   navbar.classList.add(`navbar-${theme}`, `bg-${theme}`);
 }
 
-let entries = [];
+const IEntry = { title: "", prompt: "" };
+
+/**
+ * @type {IEntry[]}
+ */
+let entryCache;
 
 async function getData() {
-  const data = await fetch(url).then(d => d.json()); // send GET request to fetch data
-  if (!data) return []; // return empty array if no data
+  if (entryCache) return entryCache;
 
-  entries = [...data.feed.entry].map(e => ({
-    title: e.gsx$title.$t,
+  const { data } = await axios.get(url);
+  if (!data) return [];
+
+  entryCache = [...data.feed.entry].map(e => ({
+    title: sanitize(e.gsx$title.$t),
     prompt: marked(sanitize(e.gsx$prompt.$t))
   }));
 
-  return entries;
+  return entryCache;
 }
 
 async function start() {
-  if (!parent) return; // return if can't find divs
+  if (!parent) return;
 
-  await getData();
+  const entries = await getData();
 
-  if (!entries.length) {
-    return;
-  }
+  if (!entries.length) return;
 
   entries.forEach(e => {
     const el = document.createElement("div");
+
     el.className = "row mb-4";
     el.id = `prompt-${entries.indexOf(e)}`;
-    el.innerHTML = `<div class="col-sm">
+
+    el.innerHTML = `
+    <div class="col-sm">
       <h3>${e.title}</h3>
       <p>${e.prompt}</p>
     </div>
@@ -66,13 +73,18 @@ async function start() {
   enableTabs();
 }
 
-window.create = () => {
+window.create = async () => {
+  const entries = await getData();
+
   const answers = entries.map(e => {
+    /**
+     * @type {HTMLTextAreaElement | null}
+     */
     const textarea = document.querySelector(
       `#prompt-${entries.indexOf(e)} textarea`
     );
 
-    if (!textarea) return;
+    if (!textarea) return `Element not found: ${entries.indexOf(e)}`;
 
     return textarea.value;
   });
