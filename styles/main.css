@@ -1,6 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
+    font-family: 'Abel', sans-serif;
 }
 
 #header {
@@ -21,20 +22,44 @@ body {
 #exitqs {
     background-color: lightgray;
     padding: 10px;
-    margins: 0;
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    box-sizing:border-box;
 }
 
 #warmup {
     padding: 10px;
-    margins: 0;
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    box-sizing:border-box;
 }
 
 .prompt,.input {
-    border:4px solid black;
-    padding:10px;
+    border: 4px solid black;
     display: inline-block;
+    width: 50%;
+}
+
+.prompt {
+    padding: 5px 10px;
 }
 
 .input {
     float: right;
+    padding: 0;
+    width: 40%;
+    height: 120px;
+}
+
+textarea, textarea:focus {
+    margin: 0;
+    border: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
 }
