@@ -2,13 +2,16 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Abel', sans-serif;
+    background-color: black;
+    color: white;
 }
 
 #header {
-    border: 4px solid black;
-    background-color: rgb(157, 192, 255);
+/*     border-bottom: 4px solid white; */
+    background-color: yellow;
     font-family: 'Abel', sans-serif;
     padding: 10px 20px;
+    color: black;
 }
 
 #header > * {
@@ -20,7 +23,7 @@ body {
 }
 
 #exitqs {
-    background-color: lightgray;
+    background-color: rgb(10, 10, 10);
 }
 
 #warmup, #exitqs, #bottom {
@@ -32,7 +35,6 @@ body {
 }
 
 .prompt,.input {
-    border: 4px solid black;
     display: inline-block;
     width: 50%;
 }
@@ -60,10 +62,13 @@ textarea, textarea:focus {
 }
 
 #bottom-createbutton {
+    position: sticky;
     float: right;
-    border: 4px solid black;
+    border: 4px solid white;
     width: 100px;
-    height: 30px;
+    height: 50px;
     font-family: inherit;
-    background-color: rgb(157, 192, 255);
+    background-color: yellow;
+    color: black;
+    border-radius: 100vw;
 }
