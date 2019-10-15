@@ -4,10 +4,11 @@ body {
     font-family: 'Abel', sans-serif;
     background-color: black;
     color: white;
+    height: 100vh;
+    width: 100vw;
 }
 
 #header {
-/*     border-bottom: 4px solid white; */
     background-color: yellow;
     font-family: 'Abel', sans-serif;
     padding: 10px 20px;
@@ -63,12 +64,16 @@ textarea, textarea:focus {
 
 #bottom-createbutton {
     position: sticky;
+    bottom: 10px;
     float: right;
-    border: 4px solid white;
-    width: 100px;
-    height: 50px;
+    right: 10px;
+    padding: 20px 50px;
     font-family: inherit;
     background-color: yellow;
     color: black;
-    border-radius: 100vw;
+    border-radius: 1000vh;
+    border-style: none;
+    cursor: pointer;
+    
+
 }
