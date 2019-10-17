@@ -29,6 +29,11 @@ body {
     color: black;
 }
 
+#header-aboutlink > a{
+    color: black;
+    text-decoration: none;
+}
+
 #exitqs {
     background-color: rgb(10, 10, 10);
 }
