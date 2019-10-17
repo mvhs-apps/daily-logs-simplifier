@@ -87,3 +87,7 @@ textarea, textarea:focus {
     cursor: pointer;
 
 }
+
+#about-content {
+    margin: 0 20px;
+}
