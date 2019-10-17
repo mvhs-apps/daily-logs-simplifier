@@ -23,6 +23,12 @@ body {
     float: right;
 }
 
+#header-aboutlink {
+    float: right;
+    padding-right: 20px;
+    color: black;
+}
+
 #exitqs {
     background-color: rgb(10, 10, 10);
 }
