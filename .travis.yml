@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "8"
+  - "10"
+  - "12"
+dist: bionic
+cache: yarn
+install: yarn
+before_script: true
+script:
+  - yarn build
+  - rm -rf `ls -a | sed "/^dist$/d; /^\.$/d; /^\.\.$/d"`
+  - mv dist/* .
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  target-branch: gh-pages
+  on:
+    branch: master
+    condition: $TRAVIS_NODE_VERSION = 10
