@@ -1,0 +1,84 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Abel", sans-serif;
+  background-color: black;
+  color: white;
+}
+
+#header {
+  background-color: yellow;
+  padding: 10px 20px;
+  color: black;
+}
+
+#parent > div {
+  padding: 10px;
+  margin: 0 !important;
+}
+
+textarea,
+textarea:focus {
+  margin: 0;
+  border: none;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  /* display: flex; */
+  font-family: "Fira Code" !important;
+}
+
+.btn-create {
+  position: sticky;
+  bottom: 10px;
+  float: right;
+  right: 10px;
+  padding: 20px 50px;
+  font-family: inherit;
+  background-color: yellow;
+  color: black;
+  border-radius: 5rem;
+  border-style: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  padding-left: 20px;
+}
+
+#parent {
+  font-size: 1.2rem;
+}
+
+#parent ul,
+#parent ol,
+#parent p {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+pre,
+code {
+  font-family: "Fira Code" !important;
+  color: #e83e8c;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+@media (min-width: 576px) {
+  .col-sm {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
