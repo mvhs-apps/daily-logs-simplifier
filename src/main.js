@@ -12,16 +12,6 @@ const url = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/valu
 
 const parent = document.querySelector("#parent");
 
-const theme = "dark";
-
-document.body.classList.add(`theme-${theme}`);
-
-const navbar = document.querySelector(".navbar");
-
-if (navbar) {
-  navbar.classList.add(`navbar-${theme}`, `bg-${theme}`);
-}
-
 const IEntry = { title: "", prompt: "" };
 
 /**
@@ -63,7 +53,6 @@ async function start() {
     </div>
     <div class="col-sm">
       <textarea
-        class="form-control textarea"
         rows="10"
       ></textarea>
     </div>`;
@@ -85,9 +74,14 @@ window.create = async () => {
       `#prompt-${entries.indexOf(e)} textarea`
     );
 
-    if (!textarea) return `Element not found: ${entries.indexOf(e)}`;
+    if (!textarea) {
+      return {
+        value: `Element not found: ${entries.indexOf(e)}`,
+        title: e.title
+      };
+    }
 
-    return textarea.value;
+    return { value: textarea.value, title: e.title };
   });
 
   if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
@@ -104,7 +98,9 @@ window.create = async () => {
     requests: [
       {
         insertText: {
-          text: `Daily Log for ${date}\n\n${answers.join("\n\n")}`,
+          text: answers
+            .map(answer => `### ${answer.title}:\n\n${answer.value}`)
+            .join("\n\n"),
           location: {
             index: 1,
             segmentId: ""

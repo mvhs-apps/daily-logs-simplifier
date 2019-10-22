@@ -8,31 +8,20 @@
     />
     <title>Daily Log Creator</title>
     <link
-      href="https://fonts.googleapis.com/css?family=Fira+Code|Roboto&display=swap"
+      href="https://fonts.googleapis.com/css?family=Fira+Code|Abel&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="p-4 h-100 d-flex flex-column">
-      <nav class="navbar mb-4">
-        <span class="navbar-brand mb-0">Daily Log Creator</span>
-      </nav>
-      <div class="d-flex flex-column container">
-        <div id="parent"></div>
-        <div class="row mb-4">
-          <div class="col">
-            <button class="btn btn-primary w-100 h-100 p-2" onclick="create()">
-              <h3 class="mb-0">Create!</h3>
-            </button>
-          </div>
-        </div>
+    <div id="header">
+      <div id="header-title">
+        <strong>Daily Log Creator</strong>
       </div>
     </div>
+    <div id="parent"></div>
+    <button class="btn-create" onclick="create()">
+      Create!
+    </button>
     <script src="main.js"></script>
-    <!-- <script
-      async
-      onload="configureGAPI()"
-      src="https://apis.google.com/js/api.js"
-    ></script> -->
   </body>
 </html>
