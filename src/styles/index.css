@@ -2,12 +2,12 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: "Abel", sans-serif;
-  background-color: black;
+  background-color: rgb(10, 10, 10);
   color: white;
 }
 
 #header {
-  background-color: yellow;
+  background-color: rgb(255, 221, 31);
   padding: 10px 20px;
   color: black;
 }
@@ -33,9 +33,9 @@ textarea:focus {
   bottom: 10px;
   float: right;
   right: 10px;
-  padding: 20px 50px;
+  padding: 20px 20px;
   font-family: inherit;
-  background-color: yellow;
+  background-color: rgb(255, 221, 31);
   color: black;
   border-radius: 5rem;
   border-style: none;
@@ -81,4 +81,8 @@ code {
     flex-grow: 1;
     max-width: 100%;
   }
+}
+
+#logo {
+  width: 30px;
 }
