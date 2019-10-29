@@ -98,3 +98,18 @@ code {
 #logo {
   width: 50px;
 }
+
+.pagelink {
+    padding: 10px;
+    float: right;
+    margin-top: 0.4em;
+    display: block;
+    text-align: center;
+}
+
+.pagelink > a {
+    text-decoration: none;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
