@@ -88,11 +88,66 @@ window.create = async () => {
   }
 
   const date = new Date().toLocaleDateString();
-
-  const res = await gapi.client.docs.documents.create({
-    title: `Daily Log - ${date}`
-  });
-
+  let folderId;
+  let response = null;
+  
+  try {
+    response = await gapi.client.drive.files.list({
+      "q": "name = 'Daily Logs' and mimeType = 'application/vnd.google-apps.folder'"
+    });
+  } catch (err) {
+    console.error("Execute error", err);
+    return;
+  }
+  console.log("Response", response);
+  if (response.result.files.length != 0) {
+    console.log("i found it");
+  } else {
+    console.log("i didnt find it");
+    let response1 = null;
+    try {
+      response1 = await gapi.client.drive.files.create({
+        "mimeType": "application/vnd.google-apps.folder",
+        "name": "Daily Logs"
+      });
+    } catch (err) {
+      console.error("Execute error", err);
+      return;
+    }
+    folderId = response1.result.id;
+  }
+  
+  const title = `Daily Log - ${date}`;
+  const searchQuery = "name = '" + title + "' and mimeType = 'application/vnd.google-apps.document' and '" + folderId + "' in parents";
+  response = null;
+  try {
+    response = await gapi.client.drive.files.list({
+      "q": searchQuery
+    });
+  } catch (err) {
+    console.error("Execute error", err);
+    return;
+  }
+  if (response.result.files.length != 0) {
+    documentId = response.result.files[0].id;
+    console.log("i found it");
+  } else {
+    response = null;
+    console.log("i didnt find it");
+    try {
+      response = await gapi.client.drive.files.create({
+        "mimeType": "application/vnd.google-apps.document",
+        "name": title,
+        "parents": [
+          folderId
+        ]
+      });
+    } catch (err) {
+      console.error("Execute error", err);
+      return;
+    }
+    documentId = response.result.id;
+  }
   const req = {
     requests: [
       {
@@ -110,7 +165,7 @@ window.create = async () => {
   };
 
   await gapi.client.docs.documents.batchUpdate(
-    { documentId: res.result.documentId },
+    { documentId: documentId },
     req
   );
 };
