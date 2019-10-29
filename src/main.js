@@ -101,6 +101,7 @@ window.create = async () => {
   }
   console.log("Response", response);
   if (response.result.files.length != 0) {
+    folderId = response.result.files[0].id;
     console.log("i found it");
   } else {
     console.log("i didnt find it");
