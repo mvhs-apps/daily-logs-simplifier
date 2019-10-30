@@ -42,19 +42,23 @@ async function start() {
   entries.forEach(e => {
     const el = document.createElement("div");
 
+    const newTitle = e.title.startsWith("!") ? e.title.slice(1) : e.title;
+
     el.className = "row mb-4";
     el.id = `prompt-${entries.indexOf(e)}`;
 
     el.innerHTML = `
     <div class="col-sm">
-      <h3>${e.title}</h3>
+      <h3>${newTitle}</h3>
       <p>${e.prompt}</p>
-    </div>
-    <div class="col-sm">
-      <textarea
-        rows="10"
-      ></textarea>
     </div>`;
+
+    if (!e.title.startsWith("!")) {
+      el.innerHTML += `
+      <div class="col-sm">
+        <textarea rows="10"></textarea>
+      </div>`;
+    }
 
     parent.appendChild(el);
   });
@@ -62,12 +66,15 @@ async function start() {
   enableTabs();
 }
 
-window.create = async () => {
+/**
+ * @type {(btn: HTMLButtonElement) => void}
+ */
+window.create = async btn => {
   const entries = await getData();
 
   const answers = entries.map(e => {
     /**
-     * @type {HTMLTextAreaElement | null}
+     * @type {HTMLTextAreaElement}
      */
     const textarea = document.querySelector(
       `#prompt-${entries.indexOf(e)} textarea`
@@ -86,6 +93,8 @@ window.create = async () => {
   if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
     return signIn();
   }
+
+  btn.innerText = "Creating...";
 
   const date = new Date().toLocaleDateString();
 
@@ -109,10 +118,14 @@ window.create = async () => {
     ]
   };
 
+  btn.innerText = "Updating...";
+
   await gapi.client.docs.documents.batchUpdate(
     { documentId: res.result.documentId },
     req
   );
+
+  btn.innerText = "Created!";
 };
 
 window.signIn = () => gapi.auth2.getAuthInstance().signIn();
