@@ -113,3 +113,19 @@ code {
   padding: 0;
   margin: 0;
 }
+
+#biowrapper {
+    text-align: center;
+}
+
+.biocard {
+    text-align: center;
+    display: inline-block;
+    width: fit-content;
+    margin: 10px;
+    padding: 0;    
+}
+
+.biocard > img {
+    width: 10em;
+}
