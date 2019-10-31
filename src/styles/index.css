@@ -6,6 +6,10 @@ body {
   color: white;
 }
 
+textarea {
+  font-size: 15px;
+}
+
 #header {
   background-color: rgb(255, 221, 31);
   /* padding: 10px 20px; */
