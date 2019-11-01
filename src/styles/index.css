@@ -1,135 +1,120 @@
-body {
-  padding: 0px;
-  margin: 0px;
-  font-family: "Abel", sans-serif;
-  background-color: rgb(10, 10, 10);
-  color: white;
+body{
+    padding:0;
+    margin:0;
+    font-family:Abel,sans-serif;
+    background-color:#0a0a0a;
+    color:#fff
 }
-
-textarea {
-  font-size: 15px;
+ #header{
+    background-color:#ffdd1f;
+    padding-left:7px;
+    color:#000
 }
-
-#header {
-  background-color: rgb(255, 221, 31);
-  /* padding: 10px 20px; */
-  padding-left: 7px;
-  color: black;
+#parent>div{
+    padding:10px;
+    margin:0!important
 }
-
-#parent > div {
-  padding: 10px;
-  margin: 0 !important;
+ textarea {
+     display: ;
+     border:none;
+     resize:none;
+     font-family:Fira Code!important;
+     font-size:15px;
+     background-color: rgb(100, 100, 100);
+     border-radius: 5px;
+     outline: none;
+     padding: 7px;
+     box-sizing: border-box;
 }
-
-textarea,
-textarea:focus {
-  margin: 0;
-  border: none;
-  resize: none;
-  width: 100%;
-  height: 100%;
-  /* display: flex; */
-  font-family: "Fira Code" !important;
+ @keyframes brighten-anim {
+     from {
+        background-color: background-color: rgb(100, 100, 100);
+    }
+     to {
+        background-color: rgb(150, 150, 150);
+    }
 }
-
-.btn-create {
-  position: sticky;
-  bottom: 10px;
-  float: right;
-  right: 10px;
-  padding: 20px 20px;
-  font-family: inherit;
-  background-color: rgb(255, 221, 31);
-  color: black;
-  border-radius: 5rem;
-  border-style: none;
-  cursor: pointer;
-  box-shadow: 0px, 100px, #ffffff;
-  z-index: 100;
+ textarea:focus {
+     animation-name: brighten-anim;
+     animation-duration: 0.2s;
+     animation-fill-mode: forwards;
 }
-
-.btn-create:hover {
-  background-color: rgb(254, 216, 0);
+ .btn-create {
+     width: 10em;
+     margin-right: calc(50% - 5em);
+     margin-bottom: 10px;
+     margin-top: 6px;
+     padding:20px;
+     font-family:inherit;
+     background-color:#ffdd1f;
+     color:#000;
+     border-radius:5rem;
+     outline:none;
+     cursor:pointer;
+     z-index:100;
 }
-.btn-create:active {
-  background-color: rgb(254, 216, 0);
-  box-shadow: 10, 2px, #ffffff;
-  transform: translateY(5px);
+ .btn-create:active,.btn-create:hover{
+    background-color:#fed800
 }
-
-ul,
-ol {
-  padding-left: 20px;
+.btn-create:active{
+    box-shadow:10,2px,#fff;
 }
-
-#parent {
-  font-size: 1.2rem;
+ol,ul{
+    padding-left:20px
 }
-
-#parent ul,
-#parent ol,
-#parent p {
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+#parent{
+    font-size:1.2rem
 }
-
-pre,
-code {
-  font-family: "Fira Code" !important;
-  color: #e83e8c;
+#parent ol,#parent p,#parent ul{
+    margin-bottom:.5rem;
+    margin-top:.5rem
 }
-
-.row {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+code,pre{
+    font-family:Fira Code!important;
+    color:#e83e8c
 }
-
-@media (min-width: 576px) {
-  .col-sm {
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    max-width: 100%;
-  }
+.row{
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    margin-right:-15px;
+    margin-left:-15px
 }
-
-#logo {
-  width: 50px;
+@media (min-width:576px){
+    .col-sm{
+        -ms-flex-preferred-size:0;
+        flex-basis:0;
+        -ms-flex-positive:1;
+        flex-grow:1;
+        max-width:100%
+    }
 }
-
-.pagelink {
-  padding: 10px;
-  float: right;
-  margin-top: 0.4em;
-  display: block;
-  text-align: center;
+#logo{
+    width:50px
 }
-
-.pagelink > a {
-  text-decoration: none;
-  color: black;
-  padding: 0;
-  margin: 0;
+.pagelink{
+    padding:10px;
+    float:right;
+    margin-top:.4em;
+    display:block;
+    text-align:center
 }
-
-#biowrapper {
-    text-align: center;
+.pagelink>a{
+    text-decoration:none;
+    color:#000;
+    padding:0;
+    margin:0
 }
-
-.biocard {
-    text-align: center;
-    display: inline-block;
-    width: fit-content;
-    margin: 10px;
-    padding: 0;    
+#biowrapper,.biocard{
+    text-align:center
 }
-
-.biocard > img {
-    width: 10em;
+.biocard{
+    display:inline-block;
+    width:fit-content;
+    margin:10px;
+    padding:0
+}
+.biocard>img{
+    width:10em
 }
