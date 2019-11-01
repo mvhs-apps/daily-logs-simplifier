@@ -5,7 +5,7 @@ body{
     background-color:#0a0a0a;
     color:#fff
 }
- #header{
+#header{
     background-color:#ffdd1f;
     padding-left:7px;
     color:#000
@@ -14,34 +14,29 @@ body{
     padding:10px;
     margin:0!important
 }
- textarea {
-     display: ;
+ textarea{
+     display:inline-block;
      border:none;
      resize:none;
      font-family:Fira Code!important;
      font-size:15px;
-     background-color: rgb(100, 100, 100);
-     border-radius: 5px;
-     outline: none;
-     padding: 7px;
-     box-sizing: border-box;
+     background-color:#646464;
+     border-radius:5px;
+     outline:none;
+     padding:7px;
+     box-sizing:border-box;
+     float: right;
+     width: 100%;
+     height: 100% 
 }
-/*  @keyframes brighten-anim {
-     from {
-        background-color: background-color: rgb(100, 100, 100);
-    }
-     to {
-        background-color: rgb(150, 150, 150);
-    }
-} */
- textarea:focus {
-     background-color: rgb(150, 150, 150);
+ textarea:focus{
+    background-color:#969696
 }
- .btn-create {
-     width: 10em;
-     margin-right: calc(50% - 5em);
-     margin-bottom: 10px;
-     margin-top: 6px;
+ .btn-create{
+     width:10em;
+     margin-bottom:10px;
+     margin-top:6px;
+     margin-left: calc(50% - 5em);
      padding:20px;
      font-family:inherit;
      background-color:#ffdd1f;
@@ -49,13 +44,14 @@ body{
      border-radius:5rem;
      outline:none;
      cursor:pointer;
+     border: none;
      z-index:100;
 }
  .btn-create:active,.btn-create:hover{
     background-color:#fed800
 }
 .btn-create:active{
-    box-shadow:10,2px,#fff;
+    box-shadow:10,2px,#fff
 }
 ol,ul{
     padding-left:20px
