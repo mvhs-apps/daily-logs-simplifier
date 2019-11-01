@@ -26,18 +26,16 @@ body{
      padding: 7px;
      box-sizing: border-box;
 }
- @keyframes brighten-anim {
+/*  @keyframes brighten-anim {
      from {
         background-color: background-color: rgb(100, 100, 100);
     }
      to {
         background-color: rgb(150, 150, 150);
     }
-}
+} */
  textarea:focus {
-     animation-name: brighten-anim;
-     animation-duration: 0.2s;
-     animation-fill-mode: forwards;
+     background-color: rgb(150, 150, 150);
 }
  .btn-create {
      width: 10em;
