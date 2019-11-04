@@ -6,8 +6,8 @@
   "author": "MVCS Team",
   "license": "MIT",
   "scripts": {
-    "start": "yarn watch",
-    "build": "yarn clean && parcel build src/index.html --public-url . --no-source-maps",
+    "start": "npm run watch",
+    "build": "npm run clean && parcel build src/index.html --public-url . --no-source-maps",
     "watch": "parcel src/index.html -p 8080",
     "clean": "shx rm -rf dist"
   },
