@@ -1,5 +1,3 @@
-import "~/styles";
-
 import { sanitize } from "dompurify";
 import marked from "marked";
 import enableTabs from "~/tab";
@@ -18,26 +16,52 @@ const IEntry = { title: "", prompt: "" };
  */
 let entryCache;
 
+/**
+ * @type {string}
+ */
+let topicCache;
+
 async function getData() {
-  if (entryCache) return entryCache;
+  if (entryCache && topicCache) {
+    return {
+      entries: entryCache,
+      topic: topicCache
+    };
+  }
 
   const { data } = await axios.get(url);
-  if (!data) return [];
+  if (!data) {
+    return {
+      entries: [],
+      topic: ""
+    };
+  }
 
-  entryCache = [...data.feed.entry].map(e => ({
+  const [topic, ...entries] = [...data.feed.entry];
+
+  entryCache = entries.map(e => ({
     title: sanitize(e.gsx$title.$t),
     prompt: marked(sanitize(e.gsx$prompt.$t))
   }));
 
-  return entryCache;
+  topicCache = topic.gsx$prompt.$t;
+
+  return {
+    entries: entryCache,
+    topic: topicCache
+  };
 }
 
 async function start() {
   if (!parent) return;
 
-  const entries = await getData();
+  const { topic, entries } = await getData();
 
   if (!entries.length) return;
+
+  const topicEl = document.createElement("h2");
+  topicEl.textContent = topic;
+  parent.appendChild(topicEl);
 
   entries.forEach(e => {
     const el = document.createElement("div");
@@ -70,25 +94,27 @@ async function start() {
  * @type {(btn: HTMLButtonElement) => void}
  */
 window.create = async btn => {
-  const entries = await getData();
+  const { topic, entries } = await getData();
 
-  const answers = entries.map(e => {
-    /**
-     * @type {HTMLTextAreaElement}
-     */
-    const textarea = document.querySelector(
-      `#prompt-${entries.indexOf(e)} textarea`
-    );
+  const answers = entries
+    .filter(e => !e.title.startsWith("!"))
+    .map(e => {
+      /**
+       * @type {HTMLTextAreaElement}
+       */
+      const textarea = document.querySelector(
+        `#prompt-${entries.indexOf(e)} textarea`
+      );
 
-    if (!textarea) {
-      return {
-        value: `Element not found: ${entries.indexOf(e)}`,
-        title: e.title
-      };
-    }
+      if (!textarea) {
+        return {
+          value: `Element not found: ${entries.indexOf(e)}`,
+          title: e.title
+        };
+      }
 
-    return { value: textarea.value, title: e.title };
-  });
+      return { value: textarea.value, title: e.title };
+    });
 
   if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
     return signIn();
@@ -106,9 +132,9 @@ window.create = async btn => {
     requests: [
       {
         insertText: {
-          text: answers
+          text: `# ${topic}\n\n${answers
             .map(answer => `### ${answer.title}:\n\n${answer.value}`)
-            .join("\n\n"),
+            .join("\n\n")}`,
           location: {
             index: 1,
             segmentId: ""
