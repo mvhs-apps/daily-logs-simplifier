@@ -113,3 +113,7 @@ code,pre{
 .biocard>img{
     width:10em
 }
+#mission-wrapper {
+    background-color: #949494;
+    padding: 20px 6em;
+}
