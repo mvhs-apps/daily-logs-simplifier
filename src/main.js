@@ -93,7 +93,7 @@ window.create = async () => {
   
   try {
     response = await gapi.client.drive.files.list({
-      "q": "name = 'Daily Logs' and mimeType = 'application/vnd.google-apps.folder'"
+      "q": "name = 'APCS' and mimeType = 'application/vnd.google-apps.folder'"
     });
   } catch (err) {
     console.error("Execute error", err);
@@ -109,7 +109,7 @@ window.create = async () => {
     try {
       response1 = await gapi.client.drive.files.create({
         "mimeType": "application/vnd.google-apps.folder",
-        "name": "Daily Logs"
+        "name": "APCS"
       });
     } catch (err) {
       console.error("Execute error", err);
@@ -129,6 +129,7 @@ window.create = async () => {
     console.error("Execute error", err);
     return;
   }
+  let documentId;
   if (response.result.files.length != 0) {
     documentId = response.result.files[0].id;
     console.log("i found it");
@@ -179,7 +180,7 @@ gapi.load("client:auth2", async () => {
     apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
     clientId:
       "438020323125-jpjei4hnp58fi80sqseg70frdjdil51h.apps.googleusercontent.com",
-    discoveryDocs: ["https://docs.googleapis.com/$discovery/rest?version=v1"],
+    discoveryDocs: ["https://docs.googleapis.com/$discovery/rest?version=v1", "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
     scope: "https://www.googleapis.com/auth/drive.file"
   });
 });
