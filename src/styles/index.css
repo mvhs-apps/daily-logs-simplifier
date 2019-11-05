@@ -53,7 +53,11 @@ textarea {
 }
 
 textarea:focus {
-  background-color: #969696;
+  background-color: #969696 !important;
+}
+
+textarea:hover {
+  background-color: rgb(125, 125, 125);
 }
 
 .btn-create {
