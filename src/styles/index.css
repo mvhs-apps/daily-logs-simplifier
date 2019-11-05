@@ -114,14 +114,8 @@ pre {
   padding: 10px;
   float: right;
   margin-top: 0.4em;
-  margin-right: 10%;
-  margin-left: 10%;
   display: block;
   text-align: center;
-}
-
-#usePage {
-  margin-right: 0;
 }
 
 .pagelink > a {
