@@ -72,14 +72,22 @@ async function start() {
     el.id = `prompt-${entries.indexOf(e)}`;
 
     el.innerHTML = `
-    <div class="col-sm">
+    <div class="col-sm allboxes">
       <h3>${newTitle}</h3>
       <p>${e.prompt}</p>
     </div>`;
 
+    if (e.title.startsWith("!")) {
+      el.innerHTML = `
+      <div class="justtext allboxes">
+        <h3>${newTitle}</h3>
+        <p>${e.prompt}</p>
+      </div>`;
+    }
+
     if (!e.title.startsWith("!")) {
       el.innerHTML += `
-      <div class="textar">
+      <div class="textar allboxes">
         <textarea rows="10"></textarea>
       </div>`;
     }
