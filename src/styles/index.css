@@ -14,16 +14,8 @@ body {
     height: 60px;
 }
 
-h3 {
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-}
-
 #parent>div {
-    padding: 20;
+    padding: 10px;
     margin: 0!important
 }
 
@@ -102,7 +94,7 @@ code,pre {
 }
 
 @media (min-width: 576px) {
-    .allboxes {
+    .col-sm {
         -ms-flex-preferred-size:0;
         flex-basis: 0;
         -ms-flex-positive: 1;
@@ -115,10 +107,8 @@ code,pre {
     width: 50px;
     height: 50px;
     margin: 0;
-    padding: 0;
-    position: fixed;
-    left: 10px;
-    top: 5px;
+    padding: 5px;
+    float: left;
 }
 
 .pagelink {
@@ -161,27 +151,27 @@ code,pre {
     padding: 20px 6em
 }
 
-.col-sm {
-  margin-left: 10%;
-  margin-right: 2%;
-  background-color: #646464;
-  border-radius: 5px;
-  padding: 10px;
+.col-sm{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #646464;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-.textar {
-margin-left: 2%;
-margin-right: 10%;
-background-color: #646464;
-border-radius: 5px;
-padding: 10px;
+.col-sm:nth-child(1){
+    margin-right: 10px;
 }
 
-.justtext {
-margin-left: 10%;
-margin-right: 10%;
-background-color: #646464;
-border-radius: 5px;
-padding: 10px;
+.col-sm:nth-child(2){
+    margin-left: 10px;
 }
 
+.col-sm:only-child {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#parent > h2 {
+    text-align: center;
+}
