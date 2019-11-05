@@ -133,7 +133,7 @@ window.create = async btn => {
   const date = new Date().toLocaleDateString();
 
   const res = await gapi.client.docs.documents.create({
-    title: `Daily Log - ${date}`
+    title: `${topic}`
   });
 
   const req = {
