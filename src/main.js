@@ -135,7 +135,15 @@ window.create = async btn => {
   const res = await gapi.client.docs.documents.create({
     title: `${topic}`
   });
-
+  try {
+    console.log(topic);
+    console.log(entries);
+    console.log(answer);
+    console.log(answer.title);
+    console.log(answer.value);
+  } catch (error) {
+    console.log("oof");
+  }
   const req = {
     requests: [
       {
