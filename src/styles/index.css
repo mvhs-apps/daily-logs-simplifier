@@ -62,6 +62,7 @@ textarea:focus {
   cursor: pointer;
   border: none;
   z-index: 100;
+  font-size: 20px;
 }
 
 .btn-create:active,
@@ -119,18 +120,22 @@ pre {
 }
 
 .pagelink {
-  padding: 10px;
+  padding: 0 10px;
   float: right;
-  margin-top: 0.4em;
   display: block;
   text-align: center;
+  height: 36.5px;
+  padding-top: 17.5px;
+
+}
+
+.pagelink:hover {
+    background-color: #fed800;
 }
 
 .pagelink > a {
   text-decoration: none;
   color: #000;
-  padding: 0;
-  margin: 0;
 }
 
 #biowrapper,
@@ -156,14 +161,14 @@ pre {
 
 .col-sm {
     margin-left: 10%;
-    margin-right: 1%;
+    margin-right: 2%;
     background-color: #646464;
     border-radius: 5px;
     padding: 10px;
 }
 
 .textar {
-  margin-left: 1%;
+  margin-left: 2%;
   margin-right: 10%;
   background-color: #646464;
   border-radius: 5px;
