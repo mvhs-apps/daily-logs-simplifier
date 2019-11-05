@@ -31,7 +31,7 @@ textarea {
   resize: none;
   font-family: Fira Code !important;
   font-size: 15px;
-  background-color: #646464;
+  background-color: #333333;
   border-radius: 5px;
   outline: none;
   padding: 7px;
@@ -155,14 +155,14 @@ pre {
 }
 
 #mission-wrapper {
-  background-color: #131313;
+  background-color: #333333;
   padding: 20px 6em;
 }
 
 .col-sm {
     margin-left: 10%;
     margin-right: 2%;
-    background-color: #646464;
+    background-color: #333333;
     border-radius: 5px;
     padding: 10px;
 }
@@ -170,7 +170,7 @@ pre {
 .textar {
   margin-left: 2%;
   margin-right: 10%;
-  background-color: #646464;
+  background-color: #333333;
   border-radius: 5px;
   padding: 10px;
 }
@@ -178,7 +178,7 @@ pre {
 .justtext {
   margin-left: 10%;
   margin-right: 10%;
-  background-color: #646464;
+  background-color: #333333;
   border-radius: 5px;
   padding: 10px;
 }
