@@ -114,6 +114,16 @@ pre {
   }
 }
 
+@media (min-width: 576px) {
+  .textar {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
 #logo {
   width: 50px;
 }
@@ -156,9 +166,17 @@ pre {
 
 .col-sm {
     margin-left: 10%;
-    margin-right: 10%;
+    margin-right: 2%;
     background-color: #646464;
     border-radius: 5px;
     padding: 10px;
+}
+
+.textar {
+  margin-left: 2%;
+  margin-right: 10%;
+  background-color: #646464;
+  border-radius: 5px;
+  padding: 10px;
 }
 

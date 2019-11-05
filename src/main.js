@@ -79,7 +79,7 @@ async function start() {
 
     if (!e.title.startsWith("!")) {
       el.innerHTML += `
-      <div class="col-sm">
+      <div class="textar">
         <textarea rows="10"></textarea>
       </div>`;
     }
