@@ -154,7 +154,7 @@ window.create = async btn => {
       {
         insertText: {
           text: `# ${topic}\n\n${answers
-            .map(answer => `### ${answer.title}:\n\n${answer.value}`)
+            .map(answer => `### ${answer.title}:\n\n${entries[answers.indexOf(answer)].prompt}\n\n${answer.value}`)
             .join("\n\n")}`,
           location: {
             index: 1,
