@@ -136,11 +136,16 @@ window.create = async btn => {
     title: `${topic}`
   });
   try {
+    console.log("1");
     console.log(topic);
+    console.log("2");
     console.log(entries);
-    console.log(answer);
-    console.log(answer.title);
-    console.log(answer.value);
+    console.log("3");
+    console.log(answers);
+    console.log("4");
+    console.log(answers.title);
+    console.log("5");
+    console.log(answers.value);
   } catch (error) {
     console.log("oof");
   }
