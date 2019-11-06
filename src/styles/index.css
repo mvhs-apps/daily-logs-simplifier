@@ -50,6 +50,7 @@ textarea {
   margin-right: -10px;
   margin-top: -10px;
   color: #fff;
+  border: 2px solid #fff;
 }
 
 textarea:focus {
