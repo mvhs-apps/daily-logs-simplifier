@@ -7,7 +7,7 @@ body {
 }
 
 a:visited {
-    color: blue;
+    color: #0a9dff;
 }
 
 strong {
@@ -193,4 +193,8 @@ pre {
   background-color: #333333;
   border-radius: 5px;
   padding: 10px;
+}
+
+.allboxes a{
+  color: #0a9dff;
 }
