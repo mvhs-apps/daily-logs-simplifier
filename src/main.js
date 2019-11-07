@@ -102,9 +102,7 @@ window.create = async () => {
   console.log("Response", response);
   if (response.result.files.length != 0) {
     folderId = response.result.files[0].id;
-    console.log("i found it");
   } else {
-    console.log("i didnt find it");
     let response1 = null;
     try {
       response1 = await gapi.client.drive.files.create({
@@ -132,10 +130,8 @@ window.create = async () => {
   let documentId;
   if (response.result.files.length != 0) {
     documentId = response.result.files[0].id;
-    console.log("i found it");
   } else {
     response = null;
-    console.log("i didnt find it");
     try {
       response = await gapi.client.drive.files.create({
         "mimeType": "application/vnd.google-apps.document",
@@ -165,11 +161,16 @@ window.create = async () => {
       }
     ]
   };
-
-  await gapi.client.docs.documents.batchUpdate(
-    { documentId: documentId },
-    req
-  );
+  response = null;
+  try {
+    response = await gapi.client.docs.documents.batchUpdate(
+      { documentId: documentId },
+      req
+    );
+  } catch (err) {
+    console.error("Execute error", err);
+    return;
+  }
 };
 
 window.signIn = () => gapi.auth2.getAuthInstance().signIn();
