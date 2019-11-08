@@ -1,61 +1,94 @@
 body {
-  padding: 0px;
-  margin: 0px;
-  font-family: "Abel", sans-serif;
-  background-color: rgb(10, 10, 10);
-  color: white;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  background-color: #0a0a0a;
+  color: #fff;
+}
+
+a:visited {
+    color: #0a9dff;
+}
+
+strong {
+  text-decoration: underline;
 }
 
 #header {
-  background-color: rgb(255, 221, 31);
-  /* padding: 10px 20px; */
+  background-color: #ffdd1f;
   padding-left: 7px;
-  color: black;
+  color: #000;
+}
+
+h3 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
 }
 
 #parent > div {
-  padding: 10px;
+  padding: 20px;
   margin: 0 !important;
 }
 
-textarea,
-textarea:focus {
-  margin: 0;
+textarea {
+  display: inline-block;
   border: none;
   resize: none;
-  width: 100%;
-  height: 100%;
-  /* display: flex; */
-  font-family: "Fira Code" !important;
+  font-family: Fira Code !important;
+  font-size: 15px;
+  background-color: #333333;
+  border-radius: 5px;
+  outline: none;
+  padding: 7px;
+  box-sizing: border-box;
+  float: right;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  margin-right: -10px;
+  margin-top: -10px;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+textarea:focus {
+  background-color: #969696 !important;
+}
+
+textarea:hover {
+  background-color: rgb(125, 125, 125);
 }
 
 .btn-create {
-  position: sticky;
-  bottom: 10px;
-  float: right;
-  right: 10px;
-  padding: 20px 20px;
+  width: 10em;
+  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-left: calc(50% - 5em);
+  padding: 20px;
   font-family: inherit;
-  background-color: rgb(255, 221, 31);
-  color: black;
+  background-color: #ffdd1f;
+  color: #000;
   border-radius: 5rem;
-  border-style: none;
+  outline: none;
   cursor: pointer;
-  box-shadow: 0px, 100px, #ffffff;
+  border: none;
   z-index: 100;
+  font-size: 20px;
 }
 
+.btn-create:active,
 .btn-create:hover {
-  background-color: rgb(254, 216, 0);
-}
-.btn-create:active {
-  background-color: rgb(254, 216, 0);
-  box-shadow: 10, 2px, #ffffff;
-  transform: translateY(5px);
+  background-color: #fed800;
 }
 
-ul,
-ol {
+.btn-create:active {
+  box-shadow: 10, 2px, #fff;
+}
+
+ol,
+ul {
   padding-left: 20px;
 }
 
@@ -63,16 +96,16 @@ ol {
   font-size: 1.2rem;
 }
 
-#parent ul,
 #parent ol,
-#parent p {
+#parent p,
+#parent ul {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
 
-pre,
-code {
-  font-family: "Fira Code" !important;
+code,
+pre {
+  font-family: Fira Code !important;
   color: #e83e8c;
 }
 
@@ -86,7 +119,7 @@ code {
 }
 
 @media (min-width: 576px) {
-  .col-sm {
+  .allboxes {
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
     -ms-flex-positive: 1;
@@ -97,4 +130,72 @@ code {
 
 #logo {
   width: 50px;
+}
+
+.pagelink {
+  padding: 0 10px;
+  float: right;
+  display: block;
+  text-align: center;
+  height: 36.5px;
+  padding-top: 17.5px;
+
+}
+
+.pagelink:hover {
+    background-color: #fed800;
+}
+
+.pagelink > a {
+  text-decoration: none;
+  color: #000;
+}
+
+#biowrapper,
+.biocard {
+  text-align: center;
+}
+
+.biocard {
+  display: inline-block;
+  width: fit-content;
+  margin: 10px;
+  padding: 0;
+}
+
+.biocard > img {
+  width: 10em;
+}
+
+#mission-wrapper {
+  background-color: #333333;
+  padding: 20px 6em;
+}
+
+.col-sm {
+    margin-left: 10%;
+    margin-right: 1%;
+    background-color: #333333;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.textar {
+  margin-left: 1%;
+  margin-right: 10%;
+  background-color: #333333;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.justtext {
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #333333;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.allboxes a{
+  color: #0a9dff;
 }
