@@ -1,5 +1,3 @@
-import "~/styles";
-
 import { sanitize } from "dompurify";
 import marked from "marked";
 import enableTabs from "~/tab";
@@ -18,43 +16,81 @@ const IEntry = { title: "", prompt: "" };
  */
 let entryCache;
 
+/**
+ * @type {string}
+ */
+let topicCache;
+
 async function getData() {
-  if (entryCache) return entryCache;
+  if (entryCache && topicCache) {
+    return {
+      entries: entryCache,
+      topic: topicCache
+    };
+  }
 
   const { data } = await axios.get(url);
-  if (!data) return [];
+  if (!data) {
+    return {
+      entries: [],
+      topic: ""
+    };
+  }
 
-  entryCache = [...data.feed.entry].map(e => ({
+  const [topic, ...entries] = [...data.feed.entry];
+
+  entryCache = entries.map(e => ({
     title: sanitize(e.gsx$title.$t),
     prompt: marked(sanitize(e.gsx$prompt.$t))
   }));
 
-  return entryCache;
+  topicCache = topic.gsx$prompt.$t;
+
+  return {
+    entries: entryCache,
+    topic: topicCache
+  };
 }
 
 async function start() {
   if (!parent) return;
 
-  const entries = await getData();
+  const { topic, entries } = await getData();
 
   if (!entries.length) return;
 
+  const topicEl = document.createElement("h2");
+  topicEl.textContent = topic;
+  parent.appendChild(topicEl);
+
   entries.forEach(e => {
     const el = document.createElement("div");
+
+    const newTitle = e.title.startsWith("!") ? e.title.slice(1) : e.title;
 
     el.className = "row mb-4";
     el.id = `prompt-${entries.indexOf(e)}`;
 
     el.innerHTML = `
-    <div class="col-sm">
-      <h3>${e.title}</h3>
+    <div class="col-sm allboxes">
+      <h3>${newTitle}</h3>
       <p>${e.prompt}</p>
-    </div>
-    <div class="col-sm">
-      <textarea
-        rows="10"
-      ></textarea>
     </div>`;
+
+    if (e.title.startsWith("!")) {
+      el.innerHTML = `
+      <div class="justtext allboxes">
+        <h3>${newTitle}</h3>
+        <p>${e.prompt}</p>
+      </div>`;
+    }
+
+    if (!e.title.startsWith("!")) {
+      el.innerHTML += `
+      <div class="textar allboxes">
+        <textarea rows="10"></textarea>
+      </div>`;
+    }
 
     parent.appendChild(el);
   });
@@ -62,30 +98,37 @@ async function start() {
   enableTabs();
 }
 
-window.create = async () => {
-  const entries = await getData();
+/**
+ * @type {(btn: HTMLButtonElement) => void}
+ */
+window.create = async btn => {
+  const { topic, entries } = await getData();
 
-  const answers = entries.map(e => {
-    /**
-     * @type {HTMLTextAreaElement | null}
-     */
-    const textarea = document.querySelector(
-      `#prompt-${entries.indexOf(e)} textarea`
-    );
+  const answers = entries
+    .filter(e => !e.title.startsWith("!"))
+    .map(e => {
+      /**
+       * @type {HTMLTextAreaElement}
+       */
+      const textarea = document.querySelector(
+        `#prompt-${entries.indexOf(e)} textarea`
+      );
 
-    if (!textarea) {
-      return {
-        value: `Element not found: ${entries.indexOf(e)}`,
-        title: e.title
-      };
-    }
+      if (!textarea) {
+        return {
+          value: `Element not found: ${entries.indexOf(e)}`,
+          title: e.title
+        };
+      }
 
-    return { value: textarea.value, title: e.title };
-  });
+      return { value: textarea.value, title: e.title };
+    });
 
   if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
     return signIn();
   }
+
+  btn.innerText = "Creating...";
 
   const date = new Date().toLocaleDateString();
   let folderId;
@@ -116,8 +159,7 @@ window.create = async () => {
     folderId = response1.result.id;
   }
   
-  const title = `Daily Log - ${date}`;
-  const searchQuery = "name = '" + title + "' and mimeType = 'application/vnd.google-apps.document' and '" + folderId + "' in parents";
+  const searchQuery = "name = '" + topic + "' and mimeType = 'application/vnd.google-apps.document' and '" + folderId + "' in parents";
   response = null;
   try {
     response = await gapi.client.drive.files.list({
@@ -135,7 +177,7 @@ window.create = async () => {
     try {
       response = await gapi.client.drive.files.create({
         "mimeType": "application/vnd.google-apps.document",
-        "name": title,
+        "name": `${topic}`,
         "parents": [
           folderId
         ]
@@ -146,13 +188,29 @@ window.create = async () => {
     }
     documentId = response.result.id;
   }
+
+  try {
+    console.log("1");
+    console.log(topic);
+    console.log("2");
+    console.log(entries);
+    console.log("3");
+    console.log(answers);
+    console.log("4");
+    console.log(answers.title);
+    console.log("5");
+    console.log(answers.value);
+  } catch (error) {
+    console.log("oof");
+  }
+  
   const req = {
     requests: [
       {
         insertText: {
-          text: answers
+          text: `# ${topic}\n\n${answers
             .map(answer => `### ${answer.title}:\n\n${answer.value}`)
-            .join("\n\n"),
+            .join("\n\n")}`,
           location: {
             index: 1,
             segmentId: ""
@@ -161,16 +219,21 @@ window.create = async () => {
       }
     ]
   };
-  response = null;
+
+  btn.innerText = "Updating...";
+  
   try {
-    response = await gapi.client.docs.documents.batchUpdate(
+    await gapi.client.docs.documents.batchUpdate(
       { documentId: documentId },
       req
     );
   } catch (err) {
     console.error("Execute error", err);
+	btn.innerText = "Try again :(";
     return;
   }
+  
+  btn.innerText = "Created!";
 };
 
 window.signIn = () => gapi.auth2.getAuthInstance().signIn();
