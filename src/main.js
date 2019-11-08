@@ -131,10 +131,64 @@ window.create = async btn => {
   btn.innerText = "Creating...";
 
   const date = new Date().toLocaleDateString();
+  let folderId;
+  let response = null;
+  
+  try {
+    response = await gapi.client.drive.files.list({
+      "q": "name = 'APCS' and mimeType = 'application/vnd.google-apps.folder'"
+    });
+  } catch (err) {
+    console.error("Execute error", err);
+    return;
+  }
+  console.log("Response", response);
+  if (response.result.files.length != 0) {
+    folderId = response.result.files[0].id;
+  } else {
+    let response1 = null;
+    try {
+      response1 = await gapi.client.drive.files.create({
+        "mimeType": "application/vnd.google-apps.folder",
+        "name": "APCS"
+      });
+    } catch (err) {
+      console.error("Execute error", err);
+      return;
+    }
+    folderId = response1.result.id;
+  }
+  
+  const searchQuery = "name = '" + topic + "' and mimeType = 'application/vnd.google-apps.document' and '" + folderId + "' in parents";
+  response = null;
+  try {
+    response = await gapi.client.drive.files.list({
+      "q": searchQuery
+    });
+  } catch (err) {
+    console.error("Execute error", err);
+    return;
+  }
+  let documentId;
+  if (response.result.files.length != 0) {
+    documentId = response.result.files[0].id;
+  } else {
+    response = null;
+    try {
+      response = await gapi.client.drive.files.create({
+        "mimeType": "application/vnd.google-apps.document",
+        "name": `${topic}`,
+        "parents": [
+          folderId
+        ]
+      });
+    } catch (err) {
+      console.error("Execute error", err);
+      return;
+    }
+    documentId = response.result.id;
+  }
 
-  const res = await gapi.client.docs.documents.create({
-    title: `${topic}`
-  });
   try {
     console.log("1");
     console.log(topic);
@@ -149,6 +203,7 @@ window.create = async btn => {
   } catch (error) {
     console.log("oof");
   }
+
   const req = {
     requests: [
       {
@@ -166,12 +221,18 @@ window.create = async btn => {
   };
 
   btn.innerText = "Updating...";
-
-  await gapi.client.docs.documents.batchUpdate(
-    { documentId: res.result.documentId },
-    req
-  );
-
+  
+  try {
+    await gapi.client.docs.documents.batchUpdate(
+      { documentId: documentId },
+      req
+    );
+  } catch (err) {
+    console.error("Execute error", err);
+	btn.innerText = "Try again :(";
+    return;
+  }
+  
   btn.innerText = "Created!";
 };
 
@@ -183,7 +244,7 @@ gapi.load("client:auth2", async () => {
     apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
     clientId:
       "438020323125-jpjei4hnp58fi80sqseg70frdjdil51h.apps.googleusercontent.com",
-    discoveryDocs: ["https://docs.googleapis.com/$discovery/rest?version=v1"],
+    discoveryDocs: ["https://docs.googleapis.com/$discovery/rest?version=v1", "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
     scope: "https://www.googleapis.com/auth/drive.file"
   });
 });
