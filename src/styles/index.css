@@ -20,7 +20,7 @@ body {
 }
 
 .slider {
-  background-color: #ccc;
+  background: linear-gradient(to left, #fff, #000);
   width: 60px;
   height: 30px;
   color: #ccc;
@@ -33,7 +33,7 @@ body {
 }
 
 .slider:before {
-  background-color: #fff;
+  background-color: #000;
   width: 26px;
   height: 26px;
   color: #fff;
