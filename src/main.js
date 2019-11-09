@@ -267,16 +267,18 @@ gapi.load("client:auth2", async () => {
 
 start();
 
-var checkbox = document.getElementById("light-mode-toggle");
-checkbox.addEventListener("click", (e) => {
-  let light_theme = document.getElementById("light-style");
-  let dark_theme = document.getElementById("dark-style");
+/**
+ * @param {HTMLInputElement} el
+ */
+window.switchTheme = el => {
+  let lightElement = document.querySelector("#light-style");
+  let darkElement = document.querySelector("#dark-style");
 
-  if (checkbox.checked){
-    light_theme.rel = "stylesheet";
-    dark_theme.rel = "stylesheet alternate";
+  if (el.checked) {
+    lightElement.rel = "stylesheet";
+    darkElement.rel = "stylesheet alternate";
   } else {
-    light_theme.rel = "stylesheet alternate";
-    dark_theme.rel = "stylesheet";
+    lightElement.rel = "stylesheet alternate";
+    darkElement.rel = "stylesheet";
   }
-});
+};

@@ -6,15 +6,15 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <base target = "_blank">
+    <base target="_blank" />
     <title>Daily Log Creator</title>
     <link
       href="https://fonts.googleapis.com/css?family=Fira+Code|Roboto&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="DLFav.png" />
-    <link href="styles/light.css" rel="stylesheet alternate" id="light-style"/>
-    <link href="styles/index.css" rel="stylesheet" id="dark-style"/>
+    <link href="styles/light.css" rel="stylesheet alternate" id="light-style" />
+    <link href="styles/index.css" rel="stylesheet" id="dark-style" />
   </head>
   <body>
     <div id="header">
@@ -27,7 +27,7 @@
           <a href="HowToUse.html">How to use</a>
         </div>
         <label class="switch">
-          <input type="checkbox" id="light-mode-toggle">
+          <input type="checkbox" onclick="switchTheme(this)" />
           <span class="slider round"></span>
         </label>
       </div>
