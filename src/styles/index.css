@@ -56,7 +56,7 @@ input:checked + .slider:before {
 input:checked + .slider {
   background-color: #0a9dff;
 }
-
+*/
 
 a:visited {
     color: #0a9dff;
@@ -71,7 +71,7 @@ strong {
   padding-left: 7px;
   color: #000; 
 }
-*/
+
 
 #sun-icon {
     margin-top: 3px;
