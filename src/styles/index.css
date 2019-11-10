@@ -58,6 +58,18 @@ input:checked + .slider {
 }
 */
 
+#sun-icon {
+    margin-top: 3px;
+    -webkit-transition: .4s;
+    transition: .4s;
+
+}
+
+input:checked + span>#sun-icon {
+    transform: rotate(180deg);
+
+}
+
 a:visited {
     color: #0a9dff;
 }
