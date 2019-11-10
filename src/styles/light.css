@@ -19,7 +19,7 @@ body {
   height: 0;
 }
 
-.slider {
+/* .slider {
   background-color: #ccc;
   width: 60px;
   height: 30px;
@@ -55,8 +55,18 @@ input:checked + .slider:before {
 
 input:checked + .slider {
     background: linear-gradient(to left, #fff, #000);
+} */
+
+#sun-icon {
+    margin-top: 3px;
+    transform: rotate(0);
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
+input:checked + #sun-icon {
+    transform: rotate(180deg);
+}
 
 a:visited {
     color: #21a6ed;
