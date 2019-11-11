@@ -11,6 +11,9 @@ const parent = document.querySelector("#parent");
 
 const IEntry = { title: "", prompt: "" };
 
+//Keeps track of how many times the script failed to update a document
+let updatesFailed = 0;
+
 /**
  * @type {IEntry[]}
  */
@@ -101,7 +104,8 @@ async function start() {
 /**
  * @type {(btn: HTMLButtonElement) => void}
  */
-window.create = async btn => {
+window.create = async (btn, docId) => {
+  let documentId;
   try {
     const { topic, entries } = await getData();
 
@@ -152,12 +156,16 @@ window.create = async btn => {
     /**
      * @type {string}
      */
-    const documentId = await (async () => {
-      const res = await gapi.client.drive.files.list({
+    documentId = await (async () => {
+	  if (docId != undefined) return docId;
+	  //Do not delete yet:
+      /*
+	  const res = await gapi.client.drive.files.list({
         q: `name = '${topic}' and mimeType = 'application/vnd.google-apps.document' and '${folderId}' in parents`
       });
-
+      
       if (res.result.files.length) return res.result.files[0].id;
+	  */
 
       const newDocRes = await gapi.client.drive.files.create({
         mimeType: "application/vnd.google-apps.document",
@@ -244,8 +252,15 @@ window.create = async btn => {
 
     btn.innerText = "Created!";
   } catch (err) {
-    btn.innerText = "Try again :(";
-    throw err;
+    if (updatesFailed == 5) {
+	  updatesFailed = 0;
+      btn.innerText = "Try again :(";
+      throw err;
+	} else {
+	  updatesFailed++;
+	  console.warn(err);
+	  create(btn, documentId);
+	}
   }
 };
 
