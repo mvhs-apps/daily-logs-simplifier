@@ -1,0 +1,23 @@
+body{
+    color: yellow;
+    background-color: black;
+}
+.Steps{
+    font-size: 50px;
+}
+.Use{
+    font-size: 40px;
+}
+#Title{
+    font-size: 70px;
+}
+#header{
+    background-color:#ffdd1f;
+    padding-left:7px;
+    color:#000
+}
+#parent>div{
+    padding:10px;
+    background-color:#ffdd1f;
+    margin:0!important
+}
