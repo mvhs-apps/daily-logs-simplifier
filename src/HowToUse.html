@@ -8,9 +8,28 @@
     />
     <title>Daily Log Creator</title>
     
+    <link href="styles/light.css" rel="stylesheet alternate" id="light-style" />
+    <link href="styles/index.css" rel="stylesheet" id="dark-style" /> 
     <link href="styles/howtouse.css" rel="stylesheet" /> 
   </head>
   <body>
+      <div id="header">
+      <div id="header-title">
+        <a href="/daily-logs-simplifier"><img src="DLLogo.png" id="logo"/></a>
+        <div id="aboutPage" class="pagelink">
+          <a href="about.html">About</a>
+        </div>
+        <div id="usePage" class="pagelink">
+          <a href="HowToUse.html">How to use</a>
+        </div>
+        <label class="switch">
+          <input type="checkbox" onclick="switchTheme(this)" />
+          <span class="button-switch"><i class="material-icons" id="sun-icon">
+brightness_medium
+</i></span>
+      </div>
+    </div>
+        
       <div id="parent" >
             <h1>Daily Log Creator</h1>
             <hr />
@@ -22,5 +41,6 @@
             <p class="Steps">Step 3: </p>
             <p class = "Use">Press the create button</p>
       </div>
+        
   </body>
 </html>
