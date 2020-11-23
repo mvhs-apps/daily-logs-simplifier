@@ -1,6 +1,6 @@
 body{
     color: yellow;
-    background-color: black;
+    background-color: #0a0a0a;
 }
 .Steps{
     font-size: 50px;
@@ -17,7 +17,7 @@ body{
     color:#000
 }
 #parent>div{
-    padding:10px;
-    background-color:#ffdd1f;
-    margin:0!important
+    background-color:#0a0a0a;
+    margin:0!important;
+    color: white;
 }
