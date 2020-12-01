@@ -1,15 +1,21 @@
 body{
-    color: yellow;
+    color: #ffdd1f;
     background-color: #0a0a0a;
+    text-align: center;
 }
 .Steps{
-    font-size: 50px;
+    font-size: 45px;
+    font-weight: bold;
 }
 .Use{
-    font-size: 40px;
+    font-size: 35px;
+    color: #fff;
+    padding-bottom: 20px;
 }
 #Title{
     font-size: 70px;
+    color: #fff;
+    font-weight: bold;
 }
 #header{
     background-color:#ffdd1f;
