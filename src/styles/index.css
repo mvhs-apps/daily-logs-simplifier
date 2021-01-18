@@ -10,7 +10,9 @@ body {
     display: block;
     float: right;
     border-radius: 100em;
-    margin: 12px 10px 10px
+    margin: 12px 10px 10px;
+    user-select: none;
+    cursor: pointer;
 }
 
 .switch input {
