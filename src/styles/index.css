@@ -164,7 +164,7 @@ code,pre {
     background-color: #fed800
 }
 
-.pagelink>a {
+a>.pagelink {
     text-decoration: none;
     color: #000
 }
