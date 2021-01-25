@@ -1,0 +1,22 @@
+#Title{
+	font-size: 50px;
+	text-align: center;
+	font-weight: bold;
+    padding-bottom: 20px;
+}
+
+
+
+#tableHeader{
+	font-size: 20px;
+	text-align: center;
+	background-color: #333;
+	height: 30px;
+}
+
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	text-align: center;
+}
+
