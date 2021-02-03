@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="warmupInput" placeholder="warmup">
+    <input type="text" name="" id="classworkInput" placeholder="classwork">
+    <input type="text" name="" id="exitInput" placeholder="exit">
+    <button onclick="writeLog()">Submit</button>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
+        authDomain: "daily-log-creator.firebaseapp.com",
+        databaseURL: "https://daily-log-creator.firebaseio.com",
+        projectId: "daily-log-creator",
+        storageBucket: "daily-log-creator.appspot.com",
+        messagingSenderId: "438020323125",
+        appId: "1:438020323125:web:2c78e3f40c689c1d6f3e7c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+        function writeLog() {
+            let time = new Date()
+            let day = `${time.getMonth()+1}-${time.getDate()}-${time.getFullYear()}`
+            const db = firebase.firestore();
+            db.collection("users").doc("examplestudent").collection("logs").doc(day).set({
+                warmup: document.getElementById("warmupInput").value != "" ? true : false,
+                classwork: document.getElementById("classworkInput").value != "" ? true : false,
+                exit: document.getElementById("exitInput").value != "" ? true : false
+            }).then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
+    </script>
+
+
+</body>
+</html>
