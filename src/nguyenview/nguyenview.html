@@ -14,8 +14,10 @@
     <link href="../styles/light.css" rel="stylesheet alternate" id="light-style" />
     <link href="../styles/index.css" rel="stylesheet" id="dark-style" /> 
     <link href="nguyenview.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
   </head>
   <body>
+  	  
       <div id="header">
         <div id="header-title">
           <a href="/"><img src="../DLLogo.png" id="logo"/></a>
@@ -33,42 +35,44 @@
       <div id="parent" >
         <div style="text-align: center; background-color: #333;">
           <h1>Daily Log Creator</h1>
-        </div>
+        </div>  
         <div>
           <header id = Title>Teacher View</header>
             <div id="dropdown">
               <button id="dropbtn">Period</button>
     	      <div id="dropdown-content">
-      		<a href="#">1 : AP CS</a>
+      			<a href="#">1 : AP CS</a>
       	        <a href="#">2 : Intro to CS</a>
-     		<a href="#">3 : Adv CS</a>
+     			<a href="#">3 : Adv CS</a>
               </div>
             </div>
-          <div id="table">
-            <table style="width:100%">
-	      <tr id = "tableHeader">
-  		<th style = "width: 45%">Name</th>
-    		<th style = "width: 45%">ID Number</th>
-    		<th style = "width: 10%">Period</th>
-  	      </tr>
-  	      <tr>
-    		<td>Smith, Bob</td>
-    		<td>100012345</td>
-    		<td>1</td>
-  	      </tr>
-  	      <tr>
-    		<td>Johnson, Joe</td>
-    		<td>100054321</td>
-    		<td>2</td>
-  	      </tr>
-  	      <tr>
-    		<td>Butler, Dave</td>
-    		<td>100011111</td>
-    		<td>3</td>
-  	      </tr>
-	    </table>
-	  </div>
-        </div>
+          <div>
+            <table id="table" style="width:100%">
+	      		<tr id = "tableHeader">
+  				<th style = "width: 45%">Name</th>
+    			<th style = "width: 45%">ID Number</th>
+    			<th style = "width: 10%">Period</th>
+  	      	</tr>
+  	      	<tr>
+    			<td>Smith, Bob</td>
+    			<td>100012345</td>
+    			<td>1</td>
+  	      	</tr>
+  	      	<tr>
+    			<td>Johnson, Joe</td>
+    			<td>100054321</td>
+    			<td>2</td>
+  	      	</tr>
+  	      	<tr>
+    			<td>Butler, Dave</td>
+    			<td>100011111</td>
+    			<td>3</td>
+  	     	 </tr>
+	   	  </table>
+	   	  
+	  	</div>
+       </div>
       </div>
+      <script src="nguyen_view.js"></script>
   </body>
 </html>
