@@ -2,10 +2,12 @@ import { sanitize } from "dompurify";
 import marked from "marked";
 import enableTabs from "~/tab";
 import axios from "axios";
-import "~/gapi";
+// import "~/gapi";
+// import gapi from "gapi";
 
-const sheetId = "1k9WZcsauAp6LI7T_eIzQ_tr2WgWo86pYUMTtkl0CH3c";
+const sheetId = "1KlJr8TqIwTsxcUU0GXHzm8v2e5JSdM_8RrttYy5hYtA";
 const url = `https://spreadsheets.google.com/feeds/list/${sheetId}/1/public/values?alt=json`;
+console.log(url);
 
 const parent = document.querySelector("#parent");
 
@@ -39,15 +41,23 @@ async function getData() {
       topic: ""
     };
   }
-
+  console.log("data");
+  console.log(data);
+  console.log(data.feed);
+  console.log(data.feed.entry);
   const [topic, ...entries] = [...data.feed.entry];
 
+  console.log(entries);
+
   entryCache = entries.map(e => ({
-    title: sanitize(e.gsx$title.$t),
-    prompt: marked(sanitize(e.gsx$prompt.$t))
+    title: sanitize(e.gsx$section.$t),
+    prompt: marked(sanitize(e.gsx$content.$t))
   }));
 
-  topicCache = topic.gsx$prompt.$t;
+  topicCache = topic.gsx$content.$t;
+
+  console.log(entryCache);
+  console.log(topicCache);
 
   return {
     entries: entryCache,
@@ -66,6 +76,8 @@ async function start() {
   topicEl.textContent = topic;
   parent.appendChild(topicEl);
 
+  console.log("entries");
+  console.log(entries);
   entries.forEach(e => {
     const el = document.createElement("div");
 
@@ -267,18 +279,49 @@ window.create = async (btn, docId) => {
 window.signIn = () => gapi.auth2.getAuthInstance().signIn();
 window.signOut = () => gapi.auth2.getAuthInstance().signOut();
 
-gapi.load("client:auth2", async () => {
-  await gapi.client.init({
-    apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
-    clientId:
-      "438020323125-jpjei4hnp58fi80sqseg70frdjdil51h.apps.googleusercontent.com",
-    discoveryDocs: [
-      "https://docs.googleapis.com/$discovery/rest?version=v1",
-      "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"
-    ],
-    scope: "https://www.googleapis.com/auth/drive.file"
+// window.setTimeout(function() {
+//   init();
+// }, 1000);
+gapi.load("client:auth2", init);
+
+function init() {
+  console.log("init called");
+  gapi.load("auth2", async function() {
+    await gapi.client
+      .init({
+        apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
+        clientId:
+          "438020323125-jpjei4hnp58fi80sqseg70frdjdil51h.apps.googleusercontent.com",
+        discoveryDocs: [
+          "https://docs.googleapis.com/$discovery/rest?version=v1",
+          "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"
+        ],
+        scope: "https://www.googleapis.com/auth/drive.file"
+      })
+      .then(function() {
+        console.log("success in init");
+      })
+      .catch(function() {
+        console.log("failed to init");
+      });
+    // await gapi.auth2.init();
+    // console.log("gapi auth 2 initialized");
   });
-});
+}
+
+// // await
+// gapi.client.init({
+//   apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
+//   clientId:
+//     "438020323125-jpjei4hnp58fi80sqseg70frdjdil51h.apps.googleusercontent.com",
+//   discoveryDocs: [
+//     "https://docs.googleapis.com/$discovery/rest?version=v1",
+//     "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"
+//   ],
+//   scope: "https://www.googleapis.com/auth/drive.file"
+// });
+// // gapi.load("client:auth2", async () => {
+// // });
 
 start();
 

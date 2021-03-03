@@ -13,10 +13,22 @@
       rel="stylesheet"
     />
     <link rel="icon" href="DLFav.png" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link href="styles/light.css" rel="stylesheet alternate" id="light-style" />
     <link href="styles/index.css" rel="stylesheet" id="dark-style" />
+    <!-- <script
+      src="https://apis.google.com/js/platform.js?onload=init"
+      async
+      defer
+      ></script> -->
+    <script
+      src="https://apis.google.com/js/platform.js?onload=init"
+      defer
+    ></script>
+    <script src="main.js" defer></script>
   </head>
   <body>
     <div id="header">
@@ -30,9 +42,11 @@
         </a>
         <label class="switch">
           <input type="checkbox" onclick="switchTheme(this)" />
-          <span class="button-switch"><i class="material-icons" id="sun-icon">
-brightness_medium
-</i></span>
+          <span class="button-switch"
+            ><i class="material-icons" id="sun-icon">
+              brightness_medium
+            </i></span
+          >
         </label>
       </div>
     </div>
@@ -40,6 +54,5 @@ brightness_medium
     <button class="btn-create" onclick="create(this)">
       Create!
     </button>
-    <script src="main.js"></script>
   </body>
 </html>
