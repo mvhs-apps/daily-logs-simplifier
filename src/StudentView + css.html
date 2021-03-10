@@ -7,6 +7,64 @@
 
 
 
+.switch {
+    display: block;
+    float: right;
+    border-radius: 100em;
+    margin: 12px 10px 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+input:checked+span>.sun-icon {
+    transform: rotate(180deg);
+    color: black;
+}
+
+.sun-icon {
+    margin-top: -18px;
+    transform: rotate(0);
+    -webkit-transition: .4s;
+    transition: .4s;
+    color: white;
+}
+
+input:checked+.sun-icon {
+    transform: rotate(180deg);
+}
+
+
+.logo {
+    width: 50px;
+}
+
+.pagelink {
+    float: right;
+    display: block;
+    text-align: center;
+    height: 36.5px;
+    padding: 17.5px 10px 0;
+}
+
+.pagelink:hover {
+    background-color: #fed800;
+}
+
+a>.pagelink {
+    text-decoration: none;
+    color: #000;
+}
+
+.header {
+    background-color: #ffdd1f;
+    padding-left: 7px;
+    color: #000;
+}
 
 .line {
   color: #ffffff;
@@ -43,6 +101,12 @@
 .pic img {
   width: 250px;
 }
+
+
+
+
+
+
 
 
 .alignment {
@@ -87,7 +151,7 @@
   clear: both;
 }
 
-/* linked family */
+/* extraced family */
 
 
 
@@ -105,7 +169,7 @@ section h1 {
     color: #000;
 }
 .box {
-  background-color: #4a4a4f;
+  background-color: #38383d;
   width: 978px;
   position: relative;
   margin-left: auto;
@@ -115,7 +179,7 @@ section h1 {
 }
 
 html, body {
-  background-color: #38383d;
+  background-color: #000000;
   min-height: 100%;
 }
 
@@ -124,26 +188,62 @@ html, body {
 }
 
 
+.switch {
+    display: block;
+    float: right;
+    border-radius: 100em;
+    margin: 12px 10px 10px;
+    user-select: none;
+    cursor: pointer;
+}
 
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
 
 
 </style><script type="text/javascript">
  //...
 </script>
- 
+ <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
  
 	  </head>
 	  <body>
+	  <script src="main.js" defer></script>
+	 <div class="header">
+     
+        <a href="/"><img src="DLLogo.png" class="logo"/></a>
+        <a target="_self" href="about.html">
+          <div id="aboutPage" class="pagelink">About</div>
+        </a>
+        <a target="_self" href="HowToUse.html">
+          <div id="usePage" class="pagelink">How to use</div>
+        </a>
+        <label class="switch">
+          <input type="checkbox" onclick="switchTheme(this)" />
+          <span class="button-switch">
+		  <i class="material-icons">
+		  <div class = "sun-icon" >
+             brightness_medium
+            </i></div></span>
+        </label>
+    
+    </div>
 		<div class="box">
 		  <section class="line">
-
+			
 			<h1 class="line">Student View</h1>
 			<div class="name">Name: </div>
 			
 	
-		  <div class="pic"><img src= "https://logs.mvhs.io/DLLogo.49c20dbb.png" >
-		  </div>
+		<!--  <div class="pic"><img src= "https://logs.mvhs.io/DLLogo.49c20dbb.png" >
+		  </div> -->
 
 		  </section>
 
@@ -162,5 +262,6 @@ html, body {
 		  
 		</div>
 		</section>
+		 <script src="main.js"></script>
 	  </body>
 </html>
