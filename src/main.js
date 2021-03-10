@@ -101,10 +101,30 @@ async function start() {
     }
 
     if (!e.title.startsWith("!")) {
-      el.innerHTML += `
-      <div class="textar allboxes">
-        <textarea rows="10"></textarea>
-      </div>`;
+        el.innerHTML += `<div id="editor" style="width: 40%">
+int[] nums = new int[10];
+for(int i = 0; i < nums.length; i++) {
+    for(int j = 0; j < nums.length-i-1; j++) {
+        if(nums[j+1] < nums[j]) {
+            int temp1 = nums[j+1];
+            int temp2 = nums[j];
+            nums[j+1] = temp2;
+            nums[j] = temp1;
+        }
+    }
+}
+        </div>`;
+
+        //changes ace editor parameters
+        let editor = ace.edit(document.getElementById("editor"));
+        editor.setOptions({
+            useWrapMode: true,
+            highlightActiveLine: true,
+            showPrintMargin: false,
+            theme: 'ace/theme/tomorrow_night',
+            mode: 'ace/mode/java'
+        })
+
     }
 
     parent.appendChild(el);
