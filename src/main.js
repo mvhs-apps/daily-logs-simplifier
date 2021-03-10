@@ -101,7 +101,7 @@ async function start() {
     }
 
     if (!e.title.startsWith("!")) {
-        el.innerHTML += `<div id="editor" style="width: 40%">
+        el.innerHTML += `<div class="editor" style="width: 40%; height: 500px;">
 int[] nums = new int[10];
 for(int i = 0; i < nums.length; i++) {
     for(int j = 0; j < nums.length-i-1; j++) {
@@ -115,8 +115,14 @@ for(int i = 0; i < nums.length; i++) {
 }
         </div>`;
 
-        //changes ace editor parameters
-        let editor = ace.edit(document.getElementById("editor"));
+    }
+
+    parent.appendChild(el);
+
+
+    let editors = document.querySelectorAll(".editor");
+    editors.forEach(function(editorElem) {
+        let editor = ace.edit(editorElem);
         editor.setOptions({
             useWrapMode: true,
             highlightActiveLine: true,
@@ -124,10 +130,8 @@ for(int i = 0; i < nums.length; i++) {
             theme: 'ace/theme/tomorrow_night',
             mode: 'ace/mode/java'
         })
+    });
 
-    }
-
-    parent.appendChild(el);
   });
 
   enableTabs();
