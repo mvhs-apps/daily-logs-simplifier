@@ -53,10 +53,49 @@
       </div>
     </div>
     <div id="parent"></div>
-    <button class="btn-create" onclick="create(this)">
+    <button class="btn-create" onclick="create(this); writeToFirebase()">
       Create!
     </button>
-    <script src="main.js"></script>
+    
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
+        authDomain: "daily-log-creator.firebaseapp.com",
+        databaseURL: "https://daily-log-creator.firebaseio.com",
+        projectId: "daily-log-creator",
+        storageBucket: "daily-log-creator.appspot.com",
+        messagingSenderId: "438020323125",
+        appId: "1:438020323125:web:2c78e3f40c689c1d6f3e7c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+        function writeToFirebase() {
+            let time = new Date()
+            let day = `${time.getMonth()+1}-${time.getDate()}-${time.getFullYear()}`
+            const db = firebase.firestore();
+
+            let inputs = document.querySelectorAll(".editor");
+
+            db.collection("users").doc("examplestudent").collection("logs").doc(day).set({
+                warmup: inputs[0].innerHTML != "" ? true : false,
+                classwork: inputs[1].innerHTML != "" ? true : false,
+            }).then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
+    </script>
 
   </body>
 </html>
