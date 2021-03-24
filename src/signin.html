@@ -76,14 +76,70 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="onPageLoad()">
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    
+        <!-- All of this can also be done in a second javascript file -->
+        <script> 
+            var firebaseConfig = {
+                apiKey: "AIzaSyADwwNFoJFdhY53K8vsJQKNHTCxGwsiiHU",
+                authDomain: "daily-log-creator.firebaseapp.com",
+                databaseURL: "https://daily-log-creator.firebaseio.com",
+                projectId: "daily-log-creator",
+                storageBucket: "daily-log-creator.appspot.com",
+                messagingSenderId: "438020323125",
+                appId: "1:438020323125:web:2c78e3f40c689c1d6f3e7c"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            var provider = new firebase.auth.GoogleAuthProvider();
+            
+            firebase.auth().useDeviceLanguage();
+            // Needs this function to see if it came from a redirect
+            function onPageLoad(){
+                firebase.auth()
+                .getRedirectResult()
+                .then((result) => {
+                if (result.credential) {
+                    /** @type {firebase.auth.OAuthCredential} */
+                    var credential = result.credential;
+            
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = credential.accessToken;
+                    // ...
+                    window.alert("You are logged in")
+
+                }
+                // The signed-in user info.
+                var user = result.user;
+                }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+                console.error(errorCode)
+            
+                });
+            }
+            // when you press the button, this is called and it redirects
+            function sendSignInPrompt(){
+                firebase.auth().signInWithRedirect(provider)
+            }  
+        </script>
+    
         <div class="header">
             <h1>This will be the header</h1>
         </div>
         <div class="content">
             <div class="container">
                 <h2 class="m">Sign In</h2>
-                <div class="btn m"> <!-------the function for logging in would be put here------->
+                <div class="btn m" onclick="sendSignInPrompt()"> <!-------the function for logging in would be put here------->
                     <img id="gPic" class="imageMargin" src="googleLogo.png">
                     <div class="noSelectText">sign in with google</div>
                 </div>
