@@ -119,7 +119,7 @@ for(int i = 0; i < nums.length; i++) {
 
     parent.appendChild(el);
 
-
+    //configures ace editor
     let editors = document.querySelectorAll(".editor");
     editors.forEach(function(editorElem) {
         let editor = ace.edit(editorElem);
